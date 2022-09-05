@@ -1,0 +1,59 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# ompr.highs
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+{ompr} bindings to [HiGHS](https://highs.dev). Still experimental and WIP.
+It uses the [highs](https://cran.r-project.org/web/packages/highs/index.html) CRAN package internally.
+
+## Installation
+
+You can install the development version of ompr.highs like so:
+
+``` r
+remotes::install_github("dirkschumacher/ompr.highs")
+```
+
+## Example Bin Packing Problem
+
+
+```{r example}
+library(ompr)
+library(ompr.highs)
+library(dplyr, quietly = TRUE)
+max_bins <- 10
+bin_size <- 3
+n <- 10
+weights <- runif(n, max = bin_size)
+MIPModel() |>
+  add_variable(y[i], i = 1:max_bins, type = "binary") |>
+  add_variable(x[i, j], i = 1:max_bins, j = 1:n, type = "binary") |>
+  set_objective(sum_over(y[i], i = 1:max_bins), "min") |>
+  add_constraint(sum_over(weights[j] * x[i, j], j = 1:n) <= y[i] * bin_size, i = 1:max_bins) |>
+  add_constraint(sum_over(x[i, j], i = 1:max_bins) == 1, j = 1:n) |>
+  solve_model(highs_optimizer()) |>
+  get_solution(x[i, j]) |>
+  filter(value > 0.9) |>
+  arrange(i, j)
+```
+
+## Coverage
+
+```{r cover}
+covr::package_coverage()
+```
