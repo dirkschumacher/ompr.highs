@@ -57,7 +57,10 @@ highs_optimizer <- function(control = list()) {
         status <- switch(as.character(highs_sol$status),
             "7" = "optimal",
             "8" = "infeasible",
+            "9" = "infeasible",
             "10" = "unbounded",
+            "13" = "userlimit",
+            "14" = "userlimit",
             "error"
         )
 
