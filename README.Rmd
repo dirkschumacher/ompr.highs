@@ -16,9 +16,10 @@ knitr::opts_chunk$set(
 # ompr.highs
 
 <!-- badges: start -->
+[![CRAN status](https://www.r-pkg.org/badges/version/ompr.highs)](https://CRAN.R-project.org/package=ompr.highs)
 <!-- badges: end -->
 
-{ompr} bindings to [HiGHS](https://highs.dev). Still experimental and WIP.
+{ompr} bindings to [HiGHS](https://highs.dev).
 It uses the [highs](https://cran.r-project.org/web/packages/highs/index.html) CRAN package internally.
 
 ## Installation
@@ -27,6 +28,10 @@ You can install the development version of ompr.highs like so:
 
 ``` r
 remotes::install_github("dirkschumacher/ompr.highs")
+```
+
+``` r
+install.packages("ompr.highs")
 ```
 
 ## Example Bin Packing Problem

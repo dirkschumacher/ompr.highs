@@ -25,22 +25,27 @@
 #' @export
 highs_optimizer <- function(control = list()) {
     function(model) {
-        obj <- objective_function(model)
         variable_names <- variable_keys(model)
+
+        obj <- objective_function(model)
         obj_constant <- obj$constant
+
         constraints <- extract_constraints(model)
 
         rhs <- rep.int(Inf, nconstraints(model))
         leq <- constraints$sense %in% c("<=", "==")
         rhs[leq] <- constraints$rhs[leq]
+
         lhs <- rep.int(-Inf, nconstraints(model))
         geq <- constraints$sense %in% c(">=", "==")
         lhs[geq] <- constraints$rhs[geq]
+
         var_types <- as.character(variable_types(model))
         var_types[var_types %in% c("binary", "integer")] <- "I"
         var_types[var_types %in% "continuous"] <- "C"
 
         bounds <- variable_bounds(model)
+
         highs_sol <- highs_solve(
             L = as.numeric(obj$solution),
             A = constraints$matrix,
