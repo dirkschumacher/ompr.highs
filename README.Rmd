@@ -35,7 +35,7 @@ remotes::install_github("dirkschumacher/ompr.highs")
 ```{r example}
 library(ompr)
 library(ompr.highs)
-library(dplyr, quietly = TRUE)
+suppressPackageStartupMessages(library(dplyr, quietly = TRUE))
 max_bins <- 10
 bin_size <- 3
 n <- 10

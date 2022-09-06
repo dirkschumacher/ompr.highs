@@ -24,15 +24,7 @@ remotes::install_github("dirkschumacher/ompr.highs")
 ``` r
 library(ompr)
 library(ompr.highs)
-library(dplyr, quietly = TRUE)
-#> 
-#> Attaching package: 'dplyr'
-#> The following objects are masked from 'package:stats':
-#> 
-#>     filter, lag
-#> The following objects are masked from 'package:base':
-#> 
-#>     intersect, setdiff, setequal, union
+suppressPackageStartupMessages(library(dplyr, quietly = TRUE))
 max_bins <- 10
 bin_size <- 3
 n <- 10
@@ -47,23 +39,23 @@ MIPModel() |>
   get_solution(x[i, j]) |>
   filter(value > 0.9) |>
   arrange(i, j)
-#>    variable  i  j value
-#> 1         x  2  7     1
-#> 2         x  3 10     1
-#> 3         x  5  1     1
-#> 4         x  5  2     1
-#> 5         x  5  8     1
-#> 6         x  9  3     1
-#> 7         x  9  9     1
-#> 8         x 10  4     1
-#> 9         x 10  5     1
-#> 10        x 10  6     1
+#>    variable i  j value
+#> 1         x 2  1     1
+#> 2         x 2  4     1
+#> 3         x 2  7     1
+#> 4         x 4  9     1
+#> 5         x 5  8     1
+#> 6         x 6  3     1
+#> 7         x 6 10     1
+#> 8         x 7  6     1
+#> 9         x 8  2     1
+#> 10        x 8  5     1
 ```
 
 ## Coverage
 
 ``` r
 covr::package_coverage()
-#> ompr.highs Coverage: 88.89%
-#> R/highs.R: 88.89%
+#> ompr.highs Coverage: 89.47%
+#> R/highs.R: 89.47%
 ```
