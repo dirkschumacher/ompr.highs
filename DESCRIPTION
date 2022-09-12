@@ -3,7 +3,7 @@ Title: A Solver for 'ompr' that Uses the HiGHS Optimizer
 Version: 0.0.1.9000
 Authors@R:
     person("Dirk", "Schumacher", , "mail@dirk-schumacher.net", role = c("aut", "cre", "cph"))
-Description: An 'ompr' solver interface for the HiGHS optimizer <https://highs.dev>.
+Description: An 'ompr' solver interface for the open-source HiGHS optimizer <https://highs.dev>.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -14,4 +14,4 @@ Suggests:
 Config/testthat/edition: 3
 Imports:
     highs,
-    ompr
+    ompr (>= 1.0.3)
