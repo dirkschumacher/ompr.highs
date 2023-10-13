@@ -55,7 +55,7 @@ highs_optimizer <- function(control = list()) {
             lhs = lhs,
             rhs = rhs,
             offset = obj$constant,
-            dry_run = FALSE,
+            #dry_run = FALSE,
             maximum = model$objective$sense == "max",
             control = control
         )
